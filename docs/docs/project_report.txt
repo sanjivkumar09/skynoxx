@@ -1,0 +1,50 @@
+Free Fire Tournament Platform – Project Report
+
+1. User Management
+- Roles: Player, Creator, Admin
+- Secure login and session handling
+- Role-based access to features and dashboards
+
+2. Tournament Features
+- Creators: Create/manage tournaments, view participants
+- Players: Browse, join, and track tournaments
+- Admins: Oversee all tournaments and users
+
+3. Payment Integration
+- Razorpay gateway for instant, secure payments
+- Manual/offline payment with screenshot upload
+- Payment status: pending, completed, failed
+- Prize distribution tracking
+
+4. Dashboards
+- Player: Joined tournaments, payment status, prizes
+- Creator: Tournament management, participant details
+- Admin: User/tournament/payment management, statistics
+
+5. Financial Analytics
+- Total revenue and payment method breakdown
+- Recent payments table with export (CSV/PDF)
+- Search/filter for payments
+
+6. Participant Management
+- View player details (name, email, in-game name, UID, payment status, prize info)
+
+7. UI/UX
+- Modern, gaming-themed design (Bootstrap 5)
+- Responsive for desktop/mobile
+- Custom header/navbar for all roles
+
+8. Security
+- SQL injection prevention
+- Session and role validation
+- (Recommended: CSRF protection, rate limiting, audit logging)
+
+9. Documentation
+- Payment/Razorpay integration guides
+- Troubleshooting/setup instructions
+- Quick links to admin tools
+
+10. Admin Tools
+- Payment management: update status, distribute prizes
+- Analytics dashboard
+- Dropdown menu for quick access

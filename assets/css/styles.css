@@ -1,0 +1,83 @@
+/* Custom styles for the Free Fire Tournament Platform */
+
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #0f1923 0%, #0a0f17 100%);
+    margin: 0;
+    padding: 0;
+    color: #ece8e1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ece8e1;
+}
+
+/* Navbar Styles */
+.navbar {
+    background: rgba(15,25,35,0.85);
+}
+
+.navbar a {
+    color: #ece8e1;
+}
+
+/* Button Styles */
+.btn-primary {
+    background: linear-gradient(135deg, #ff4655 0%, #e03e4c 100%);
+    border: none;
+}
+
+.btn-primary:hover {
+    opacity: 0.95;
+}
+
+/* Tournament Cards */
+.tournament-card {
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(255,255,255,0.02);
+}
+
+.tournament-card h5 {
+    margin-bottom: 0.5rem;
+}
+
+/* Dashboard Styles */
+.dashboard-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid rgba(255,70,85,0.06);
+}
+
+.creator-dashboard .table thead th {
+    color: #dcd8d4;
+}
+
+.creator-dashboard .table tbody td {
+    vertical-align: middle;
+}
+
+.btn-gaming-outline {
+    color: #ff4655;
+    border-color: rgba(255,70,85,0.3);
+}
+
+.display-6 {
+    font-weight: 700;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

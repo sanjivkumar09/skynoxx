@@ -1,0 +1,18 @@
+# robots.txt for SKYNOXX Tournament Platform
+
+# Allow all bots to index public pages
+User-agent: *
+Allow: /
+
+# Block sensitive directories
+Disallow: /admin/
+Disallow: /api/
+Disallow: /src/
+Disallow: /uploads/
+Disallow: /firebase-credentials/
+Disallow: /config_template.php
+Disallow: /health_check.php
+Disallow: /*.sql$
+
+# Sitemap (create this later)
+# Sitemap: https://skynoxx.live/sitemap.xml

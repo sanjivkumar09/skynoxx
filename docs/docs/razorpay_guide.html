@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razorpay Setup Guide - Quick Start</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #16213e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(26, 26, 46, 0.9);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 2px solid #3395ff;
+        }
+        .header h1 {
+            color: #3395ff;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .header p {
+            color: #00f5ff;
+            font-size: 1.3rem;
+        }
+        .step-container {
+            background: rgba(26, 26, 46, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-left: 5px solid #3395ff;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .step-number {
+            background: linear-gradient(135deg, #3395ff, #0080ff);
+            color: white;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-right: 20px;
+            box-shadow: 0 5px 20px rgba(51, 149, 255, 0.5);
+        }
+        .step-title {
+            font-size: 1.8rem;
+            color: #00f5ff;
+        }
+        .code-box {
+            background: rgba(15, 15, 35, 0.8);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .code-box pre {
+            margin: 0;
+            color: #ff6b7a;
+        }
+        .highlight {
+            background: rgba(255, 193, 7, 0.2);
+            padding: 2px 8px;
+            border-radius: 5px;
+            color: #ffc107;
+            font-weight: bold;
+        }
+        .test-card {
+            background: rgba(0, 245, 255, 0.05);
+            border: 2px dashed rgba(0, 245, 255, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .test-card h4 {
+            color: #00f5ff;
+            margin-bottom: 15px;
+        }
+        .test-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .test-item {
+            background: rgba(15, 15, 35, 0.6);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #3395ff;
+        }
+        .test-item strong {
+            color: #3395ff;
+        }
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .warning-box h4 {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+        .success-box {
+            background: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .success-box h4 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(0, 245, 255, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid #00f5ff;
+        }
+        .checklist li:before {
+            content: "☐ ";
+            color: #3395ff;
+            font-size: 1.3rem;
+            margin-right: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #3395ff, #0080ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(51, 149, 255, 0.5);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: rgba(15, 15, 35, 0.6);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(51, 149, 255, 0.3);
+            text-align: center;
+        }
+        .feature-card .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            color: #3395ff;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(51, 149, 255, 0.2);
+        }
+        th {
+            background: rgba(51, 149, 255, 0.1);
+            color: #3395ff;
+            font-weight: 600;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .badge-test {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+        .badge-live {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💳 Razorpay Setup</h1>
+            <p>Complete Integration Guide - Get Started in 5 Minutes</p>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <div class="step-title">Create Razorpay Account</div>
+            </div>
+            <p>Sign up for a Razorpay account to get your API keys.</p>
+            <ol style="margin: 20px 0; padding-left: 20px;">
+                <li>Visit <a href="https://razorpay.com/" target="_blank" style="color: #3395ff;">razorpay.com</a></li>
+                <li>Click <strong>"Sign Up"</strong> → Create account with email</li>
+                <li>Verify your email and phone number</li>
+                <li>Login to <a href="https://dashboard.razorpay.com/" target="_blank" style="color: #3395ff;">dashboard.razorpay.com</a></li>
+            </ol>
+            <a href="https://razorpay.com/" target="_blank" class="btn">Create Razorpay Account →</a>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <div class="step-title">Get Your API Keys</div>
+            </div>
+            <p>Generate test API keys to start accepting payments.</p>
+            <ol style="margin: 20px 0; padding-left: 20px;">
+                <li>Login to Razorpay Dashboard</li>
+                <li>Go to <strong>Settings</strong> → <strong>API Keys</strong></li>
+                <li>Click <strong>"Generate Test Keys"</strong></li>
+                <li>Copy your <span class="highlight">Key ID</span> and <span class="highlight">Key Secret</span></li>
+            </ol>
+            <div class="warning-box">
+                <h4>⚠️ Security Warning</h4>
+                <p>Never share your Key Secret publicly or commit it to Git. Keep it secure!</p>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <div class="step-title">Configure Your Application</div>
+            </div>
+            <p>Update the configuration file with your Razorpay credentials.</p>
+            
+            <h4 style="color: #00f5ff; margin: 20px 0 10px;">File Location:</h4>
+            <div class="code-box">
+                <pre>src/razorpay_config.php</pre>
+            </div>
+
+            <h4 style="color: #00f5ff; margin: 20px 0 10px;">Replace These Values:</h4>
+            <div class="code-box">
+<pre>// BEFORE (Default)
+define('RAZORPAY_KEY_ID', 'rzp_test_YOUR_KEY_ID');
+define('RAZORPAY_KEY_SECRET', 'YOUR_KEY_SECRET');
+
+// AFTER (Your actual keys)
+define('RAZORPAY_KEY_ID', 'rzp_test_AbCdEfGhIjKlMnOp');
+define('RAZORPAY_KEY_SECRET', 'qRsTuVwXyZ1234567890');</pre>
+            </div>
+
+            <div class="test-card">
+                <h4>📝 Configuration Checklist</h4>
+                <ul class="checklist">
+                    <li>Copied Key ID from Razorpay dashboard</li>
+                    <li>Copied Key Secret (keep secure!)</li>
+                    <li>Updated razorpay_config.php file</li>
+                    <li>Set RAZORPAY_MODE to 'test'</li>
+                    <li>Saved the file</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <div class="step-title">Test the Integration</div>
+            </div>
+            <p>Use test credentials to verify payment flow works correctly.</p>
+
+            <div class="test-card">
+                <h4>🧪 Test Payment Credentials</h4>
+                <div class="test-details">
+                    <div class="test-item">
+                        <strong>Test Card Number:</strong><br>
+                        4111 1111 1111 1111
+                    </div>
+                    <div class="test-item">
+                        <strong>CVV:</strong><br>
+                        Any 3 digits (e.g., 123)
+                    </div>
+                    <div class="test-item">
+                        <strong>Expiry Date:</strong><br>
+                        Any future date (e.g., 12/25)
+                    </div>
+                    <div class="test-item">
+                        <strong>Success UPI:</strong><br>
+                        success@razorpay
+                    </div>
+                    <div class="test-item">
+                        <strong>Failure UPI:</strong><br>
+                        failure@razorpay
+                    </div>
+                    <div class="test-item">
+                        <strong>Cardholder Name:</strong><br>
+                        Any name
+                    </div>
+                </div>
+            </div>
+
+            <h4 style="color: #00f5ff; margin: 30px 0 15px;">Testing Steps:</h4>
+            <ol style="margin: 20px 0; padding-left: 20px;">
+                <li>Register a player account and join a tournament</li>
+                <li>Go to Player Dashboard</li>
+                <li>Click <strong>"Pay with Razorpay"</strong> button</li>
+                <li>Click <strong>"Pay Now"</strong> on payment page</li>
+                <li>Use test card/UPI credentials above</li>
+                <li>Verify payment completes successfully</li>
+                <li>Check dashboard shows "Completed" status</li>
+            </ol>
+
+            <a href="../player/player_dashboard.php" class="btn">Go to Player Dashboard →</a>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step-container">
+            <div class="step-header">
+                <div class="step-number">5</div>
+                <div class="step-title">Go Live (Production)</div>
+            </div>
+            <p>When ready for real payments, switch to live mode.</p>
+
+            <div class="warning-box">
+                <h4>⚠️ Prerequisites for Going Live</h4>
+                <ul>
+                    <li>Complete KYC verification on Razorpay</li>
+                    <li>Business account activated by Razorpay</li>
+                    <li>Thorough testing in test mode completed</li>
+                    <li>SSL certificate installed (HTTPS)</li>
+                </ul>
+            </div>
+
+            <h4 style="color: #00f5ff; margin: 30px 0 15px;">Live Mode Steps:</h4>
+            <ol style="margin: 20px 0; padding-left: 20px;">
+                <li>Complete KYC in Razorpay dashboard</li>
+                <li>Generate <strong>Live API Keys</strong> (starts with rzp_live_)</li>
+                <li>Update <code>razorpay_config.php</code> with live keys</li>
+                <li>Change mode: <code>define('RAZORPAY_MODE', 'live');</code></li>
+                <li>Test with small real transaction (₹1)</li>
+                <li>Verify and refund test transaction</li>
+                <li>Launch! 🚀</li>
+            </ol>
+
+            <div class="code-box">
+<pre>// Production Configuration
+define('RAZORPAY_KEY_ID', 'rzp_live_YOUR_LIVE_KEY');
+define('RAZORPAY_KEY_SECRET', 'your_live_secret');
+define('RAZORPAY_MODE', 'live');</pre>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="step-container">
+            <h2 style="color: #3395ff; text-align: center; margin-bottom: 30px;">✨ What You Get</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">💳</div>
+                    <h3>Cards</h3>
+                    <p>Visa, Mastercard, RuPay, American Express</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📱</div>
+                    <h3>UPI</h3>
+                    <p>Google Pay, PhonePe, Paytm, BHIM</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🏦</div>
+                    <h3>Net Banking</h3>
+                    <p>50+ banks supported</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💰</div>
+                    <h3>Wallets</h3>
+                    <p>Paytm, PhonePe, Mobikwik</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔒</div>
+                    <h3>Secure</h3>
+                    <p>PCI-DSS compliant, 256-bit encryption</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">⚡</div>
+                    <h3>Instant</h3>
+                    <p>Real-time payment verification</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="step-container">
+            <h2 style="color: #3395ff; margin-bottom: 20px;">💰 Pricing</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Payment Method</th>
+                        <th>Transaction Fee</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>UPI</td>
+                        <td><strong style="color: #28a745;">FREE (₹0)</strong></td>
+                        <td>Recommended for India</td>
+                    </tr>
+                    <tr>
+                        <td>Domestic Cards</td>
+                        <td>2% per transaction</td>
+                        <td>Visa, Mastercard, RuPay</td>
+                    </tr>
+                    <tr>
+                        <td>Net Banking</td>
+                        <td>₹3-7 per transaction</td>
+                        <td>All major banks</td>
+                    </tr>
+                    <tr>
+                        <td>Wallets</td>
+                        <td>2% per transaction</td>
+                        <td>Paytm, PhonePe, etc.</td>
+                    </tr>
+                    <tr>
+                        <td>International Cards</td>
+                        <td>3% + GST</td>
+                        <td>Requires activation</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 20px; color: #00f5ff;">✓ No setup fees • No annual charges • Pay only for successful transactions</p>
+        </div>
+
+        <!-- Success -->
+        <div class="success-box">
+            <h4>🎉 Integration Complete!</h4>
+            <p>Your Razorpay payment gateway is now ready to accept payments. Players can pay instantly with cards, UPI, net banking, and wallets.</p>
+            <div style="margin-top: 20px;">
+                <a href="../admin/payment_management.php" class="btn">View Admin Dashboard →</a>
+                <a href="../player/player_dashboard.php" class="btn">Test as Player →</a>
+                <a href="RAZORPAY_SETUP.md" class="btn">Full Documentation →</a>
+            </div>
+        </div>
+
+        <!-- Support -->
+        <div class="step-container">
+            <h2 style="color: #3395ff; margin-bottom: 20px;">📞 Need Help?</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div>
+                    <h4 style="color: #00f5ff;">Razorpay Support</h4>
+                    <p>Email: support@razorpay.com</p>
+                    <p>Dashboard: Raise ticket</p>
+                    <p><a href="https://razorpay.com/docs/" target="_blank" style="color: #3395ff;">Official Documentation →</a></p>
+                </div>
+                <div>
+                    <h4 style="color: #00f5ff;">Quick Links</h4>
+                    <p><a href="https://razorpay.com/docs/payments/payment-gateway/web-integration/" target="_blank" style="color: #3395ff;">Integration Guide</a></p>
+                    <p><a href="https://razorpay.com/docs/payments/payments/test-card-details/" target="_blank" style="color: #3395ff;">Test Credentials</a></p>
+                    <p><a href="https://dashboard.razorpay.com/" target="_blank" style="color: #3395ff;">Dashboard Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
