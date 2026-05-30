@@ -24,16 +24,11 @@ if ($amount > 0) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <title>Wallet Deposit Success</title>
-    <link rel="stylesheet" href="../../assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/mobile-responsive.css">
-    <style>
-        body { background: #101a24; color: #fff; }
-        .card { background: #23243a; border-radius: 16px; border: none; }
-        .btn-wallet { background: #00f5ff; color: #101a24; font-weight: 600; border-radius: 8px; }
-        .btn-wallet:hover { background: #ffaa00; color: #23243a; }
-    </style>
 </head>
 <body>
 <div class="container py-4">

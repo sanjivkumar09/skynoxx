@@ -101,172 +101,20 @@ if ($http_code !== 200) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pay with Razorpay - Free Fire Tournament</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <style>
-        :root {
-            --primary: #ff4655;
-            --secondary: #1a1a2e;
-            --accent-gaming: #00f5ff;
-            --dark-bg: #0f0f23;
-            --card-bg: #1a1a2e;
-            --text-light: #e0e0e0;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--dark-bg) 0%, #16213e 100%);
-            color: var(--text-light);
-            min-height: 100vh;
-        }
-        
-        .navbar {
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid var(--primary);
-            padding: 0.5rem 0;
-        }
-        
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--primary) !important;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .navbar-brand img {
-            height: 45px;
-            width: auto;
-        }
-        
-        .payment-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 0 20px;
-        }
-        
-        .payment-card {
-            background: rgba(26, 26, 46, 0.9);
-            border: 1px solid rgba(255, 70, 85, 0.3);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-        
-        .razorpay-logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .razorpay-logo img {
-            height: 40px;
-            filter: brightness(0) invert(1);
-        }
-        
-        .tournament-info {
-            background: rgba(255, 70, 85, 0.1);
-            border-left: 4px solid var(--primary);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .amount-box {
-            background: linear-gradient(135deg, rgba(255, 70, 85, 0.2), rgba(0, 245, 255, 0.2));
-            border: 2px solid var(--accent-gaming);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 30px 0;
-        }
-        
-        .amount-box .amount {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--accent-gaming);
-            text-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
-        }
-        
-        .btn-razorpay {
-            background: linear-gradient(135deg, #3395ff 0%, #0080ff 100%);
-            border: none;
-            padding: 15px 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-top: 20px;
-        }
-        
-        .btn-razorpay:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(51, 149, 255, 0.5);
-        }
-        
-        .payment-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        
-        .feature-card {
-            background: rgba(0, 245, 255, 0.05);
-            border: 1px solid rgba(0, 245, 255, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
-        .feature-card i {
-            font-size: 2.5rem;
-            color: var(--accent-gaming);
-            margin-bottom: 10px;
-        }
-        
-        .payment-methods {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-        
-        .payment-method {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-        }
-        
-        .alert {
-            border-radius: 10px;
-            border: none;
-        }
-        
-        .loading-spinner {
-            display: none;
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .loading-spinner.active {
-            display: block;
-        }
-    </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="player_dashboard.php">
-                <img src="/assets/images/logo.png" alt="Logo">
+                <img src="../../assets/images/SKYNOXX.png" alt="Logo">
                 Free Fire Tournament Platform
             </a>
         </div>

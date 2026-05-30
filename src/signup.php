@@ -4,7 +4,7 @@ include('db.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
-    $email = $_POST['email'];
+    $email = trim(strtolower($_POST['email']));
     $phone = $_POST['phone'];
     $password = $_POST['password'];
     $role = 'player'; // Default role for new users
@@ -34,39 +34,65 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>Sign Up - Free Fire Tournament Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/gaming-theme.css">
 </head>
 <body>
     <?php include('includes/header.php'); ?>
 
-    <div class="container">
-        <h2>Sign Up</h2>
-        <?php if (isset($_SESSION['error'])): ?>
-            <div class="alert alert-danger">
-                <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
+    <section class="login-container">
+        <div class="login-card">
+            <div class="card-header">
+                <h1 class="card-title">Create Account</h1>
+                <p class="card-subtitle">Join the elite tournament arena today</p>
             </div>
-        <?php endif; ?>
-        <form action="signup.php" method="POST">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="name" required>
+            <div class="card-body">
+                <?php if (isset($_SESSION['error'])): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?>
+                    </div>
+                <?php endif; ?>
+
+                <form action="signup.php" method="POST" class="needs-validation" novalidate>
+                    <div class="form-group mb-3">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" required>
+                        <div class="invalid-feedback">Please enter your name.</div>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                        <div class="invalid-feedback">Please provide a valid email address.</div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+                        <div class="invalid-feedback">Please enter your phone number.</div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Create password" required>
+                        <div class="invalid-feedback">Please enter a password.</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-gaming w-100 login-btn">Sign Up to Platform</button>
+                </form>
+
+                <div class="divider my-4">
+                    <span>Already have an account?</span>
+                </div>
+
+                <div class="text-center">
+                    <a href="login.php" class="btn btn-gaming-outline w-100">Log In Here</a>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="text" name="phone" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" required>
-            </div>
-            <button type="submit">Sign Up</button>
-        </form>
-    </div>
+        </div>
+    </section>
 
     <?php include('includes/footer.php'); ?>
 </body>

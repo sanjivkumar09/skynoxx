@@ -111,26 +111,13 @@ function h($v) { return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8'); }
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wallet Deposits - Admin</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <style>
-        body { font-family: 'Inter', sans-serif; background: #f3f6fb; }
-        .main-container { background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); padding: 28px; }
-        .stats-card { border-radius: 12px; color: #fff; padding: 18px; }
-        .bg-total { background: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%); }
-        .bg-completed { background: linear-gradient(135deg, #0ba360 0%, #3cba92 100%); }
-        .bg-pending { background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); }
-        .bg-failed { background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%); }
-        .filter-card { background: #f8fafc; border-radius: 12px; padding: 16px; border: 1px solid #eef2f7; }
-        .table thead { background: #0d6efd; color: #fff; }
-        .status-badge { padding: 6px 12px; border-radius: 999px; font-weight: 600; font-size: .85rem; }
-        .truncate { max-width: 360px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        code.small { background: #f1f5f9; padding: 2px 6px; border-radius: 6px; font-size: .85rem; }
-    </style>
 </head>
 <body>
 <div class="container py-4">

@@ -21,25 +21,13 @@ $result = mysqli_query($conn, $query);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payments Management</title>
-    <link rel="stylesheet" href="../../assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/styles.css">
-    <link rel="stylesheet" href="../../assets/css/mobile-responsive.css">
     <!-- Header styles for navbar -->
-    <style>
-        :root { --primary:#ff4655; --primary-dark:#e03e4c; --secondary:#0f1923; --text:#ece8e1; --text-muted:#b8b3ad; }
-        .gaming-navbar { background: rgba(15,25,35,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,70,85,0.2); padding: .5rem 0; position: sticky; top: 0; z-index: 1000; }
-        .navbar-brand { font-family:'Orbitron',sans-serif; font-weight:800; font-size:1.1rem; color:var(--text); display:flex; align-items:center; }
-        .navbar-brand span { color: var(--primary); }
-        .brand-logo-img { width:40px; height:40px; margin-right:10px; border-radius:6px; object-fit:contain; }
-        .btn-gaming { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border: none; color: #fff; font-weight: 600; padding: .35rem .9rem; border-radius: 4px; }
-        .btn-gaming-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); font-weight: 600; padding: .35rem .9rem; border-radius: 4px; }
-        .profile-avatar { width: 40px; height: 40px; border-radius: 50%; display:inline-flex; align-items:center; justify-content:center; background: linear-gradient(135deg,#ff4655,#e03e4c); color:#fff; font-weight:700; }
-        .profile-menu { position:absolute; right:0; top:54px; min-width:260px; display:none; flex-direction:column; gap:.25rem; padding:.5rem; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,.4); background:linear-gradient(180deg, rgba(26,43,60,.98), rgba(15,25,35,.98)); border:1px solid rgba(255,255,255,.04); transform-origin:top right; opacity:0; transform:translateY(-6px) scale(.98); transition:opacity 180ms ease, transform 180ms ease; z-index:1100; pointer-events:none; }
-        .profile-menu.show { display:flex; opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
-    </style>
 </head>
 <body>
     <!-- Inlined navbar -->

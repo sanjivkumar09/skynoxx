@@ -99,7 +99,7 @@ $registrations_query = "
         GROUP_CONCAT(DISTINCT tr_members.name ORDER BY tr_members.name SEPARATOR ', ') as team_members
     FROM registrations r
     JOIN users u ON r.player_id = u.id
-    LEFT JOIN team_registrations tr ON r.id = tr.registration_id AND tr.status = 'accepted'
+    LEFT JOIN team_registrations tr ON r.id = tr.registration_id AND tr.invitation_status = 'accepted'
     LEFT JOIN users tr_members ON tr.user_id = tr_members.id
     WHERE r.tournament_id = ? AND (r.payment_status IN ('success', 'paid') OR r.payment_status = '' OR r.payment_status IS NULL)
     GROUP BY r.id
@@ -226,51 +226,13 @@ function h($v) { return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8'); }
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Match Stats - <?php echo h($tournament['title']); ?></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <style>
-        body { background: #0f172a; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-        .container-main { max-width: 1400px; margin: 24px auto; }
-        .card-glass { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; }
-        .match-selector { background: linear-gradient(135deg, #3b82f6, #2563eb); padding: 1rem; border-radius: 12px; }
-        .stats-table { background: rgba(255,255,255,0.02); border: 2px solid rgba(110, 180, 255, 0.2); }
-        .stats-table th { 
-            background: rgba(110, 180, 255, 0.15); 
-            color: #6eb4ff; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            font-size: 0.9rem; 
-            padding: 1rem 0.75rem;
-            border-bottom: 2px solid rgba(110, 180, 255, 0.3);
-        }
-        .stats-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .stats-table tbody tr:hover { background: rgba(110, 180, 255, 0.05); }
-        .stats-table td { padding: 1rem 0.75rem; vertical-align: middle; }
-        .stats-input { 
-            background: #1e293b; 
-            border: 2px solid #334155; 
-            color: #e2e8f0; 
-            padding: 0.6rem; 
-            border-radius: 8px; 
-            width: 80px;
-            transition: all 0.2s;
-        }
-        .stats-input:focus { 
-            background: #0f172a; 
-            border-color: #3b82f6; 
-            outline: none; 
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-        .btn-primary { background: linear-gradient(135deg, #3b82f6, #2563eb); border: 0; font-weight: 600; }
-        .btn-success { background: linear-gradient(135deg, #10b981, #059669); border: 0; font-weight: 600; }
-        .btn-success:hover { background: linear-gradient(135deg, #059669, #047857); }
-        .team-members { font-size: 0.85rem; color: #94a3b8; margin-top: 0.25rem; }
-        input[type="radio"] { cursor: pointer; transform: scale(1.3); }
-        .badge { font-weight: 600; }
-    </style>
 </head>
 <body>
 <div class="container container-main py-4">

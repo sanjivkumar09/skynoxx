@@ -2,13 +2,13 @@
 // Configuration settings for the application
 
 // Database credentials
-define('DB_HOST', 'localhost');
-define('DB_USER', 'your_username');
-define('DB_PASS', 'your_password');
-define('DB_NAME', 'ff');
+if (!defined('DB_HOST')) define('DB_HOST', 'localhost');
+if (!defined('DB_USER')) define('DB_USER', 'root');
+if (!defined('DB_PASS')) define('DB_PASS', 'alex');
+if (!defined('DB_NAME')) define('DB_NAME', 'ff');
 
 // Other constants
-define('BASE_URL', 'http://yourdomain.com/free-fire-tournament-platform/src/');
-define('SITE_NAME', 'Free Fire Tournament Platform');
-define('ADMIN_EMAIL', 'admin@yourdomain.com');
+if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost/ff');
+if (!defined('SITE_NAME')) define('SITE_NAME', 'Free Fire Tournament Platform');
+if (!defined('ADMIN_EMAIL')) define('ADMIN_EMAIL', 'admin@freefire.com');
 ?>

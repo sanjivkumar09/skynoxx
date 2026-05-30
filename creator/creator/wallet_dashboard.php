@@ -42,20 +42,12 @@ $player_rows = $player_res ? $player_res->fetch_all(MYSQLI_ASSOC) : [];
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creator Wallet</title>
-    <link rel="stylesheet" href="../../assets/css/styles.css">
-    <link rel="stylesheet" href="../../assets/css/mobile-responsive.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-        /* Keep it clean and readable */
-        body { background: #f7f9fc; color: #212529; }
-        .wallet-card { background: #101a24; color: #fff; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
-        .btn-wallet { background: #00c2ff; color: #101a24; font-weight: 600; border-radius: 8px; }
-        .btn-wallet:hover { background: #00a2d6; color: #fff; }
-        .badge-status { font-size: .85rem; }
-    </style>
 </head>
 <body>
     <div class="container my-5">

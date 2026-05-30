@@ -120,26 +120,13 @@ $initials = strtoupper(substr($name_parts[0], 0, 1) . (isset($name_parts[1]) ? s
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creator Wallet - Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root { --primary:#ff4655; --secondary:#0f1923; --text:#ece8e1; --border: rgba(255,255,255,0.12); }
-        body { background: linear-gradient(135deg, #0f1923 0%, #1a2836 100%); color: var(--text); }
-        .admin-header { background: rgba(15,25,35,0.95); border-bottom: 2px solid var(--primary); padding: 1rem 0; position: sticky; top:0; z-index:100; }
-        .header-logo { height:48px; }
-        .content { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
-        .card-dark { background: rgba(31,45,61,0.6); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
-        .wallet-balance { font-size: 2.25rem; font-weight: 800; color: #69f0ae; }
-        .table-dark-custom { background: transparent; color: var(--text); }
-        .table-dark-custom thead th { background: rgba(255,70,85,0.1); border-color: var(--border); color: #9fb3c8; text-transform: uppercase; font-size:.85rem; padding: .8rem; }
-        .table-dark-custom tbody td { border-color: var(--border); padding: .8rem; vertical-align: middle; }
-        .amount-credit { color:#69f0ae; font-weight:700; }
-        .amount-debit { color:#ff6b6b; font-weight:700; }
-        .txn-badge { font-size: .78rem; }
-    </style>
 </head>
 <body>
     <header class="admin-header">

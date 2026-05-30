@@ -52,23 +52,13 @@ if ($tx = $conn->prepare("SELECT wt.id, wt.amount, wt.created_at, wt.status, wt.
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Wallet - Profit Settlements</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #ff4655; --primary-dark: #e03e4c; --secondary:#0f1923; --text:#ece8e1; --text-muted:#9fb3c8; --border: rgba(255,255,255,.08);
-        }
-        body { background: linear-gradient(135deg, #0f1923, #1a2836); color: var(--text); min-height:100vh; }
-        .admin-header { background: rgba(15,25,35,.95); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
-        .brand-logo-img{ height:40px; width:auto; object-fit:contain; }
-        .card-modern { background: rgba(31,45,61,.6); border:1px solid var(--border); border-radius: 12px; }
-        .stat-val { font-size:2rem; font-weight:800; }
-        .table-dark { --bs-table-bg: transparent; }
-        .badge-soft { background: rgba(255,255,255,.08); border:1px solid var(--border); }
-    </style>
 </head>
 <body>
     <nav class="navbar admin-header">

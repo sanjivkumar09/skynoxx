@@ -70,194 +70,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_payment'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Payment - Free Fire Tournament Platform</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <style>
-        :root {
-            --primary: #ff4655;
-            --secondary: #1a1a2e;
-            --accent-gaming: #00f5ff;
-            --dark-bg: #0f0f23;
-            --card-bg: #1a1a2e;
-            --text-light: #e0e0e0;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--dark-bg) 0%, #16213e 100%);
-            color: var(--text-light);
-            min-height: 100vh;
-        }
-        
-        .navbar {
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid var(--primary);
-            padding: 0.5rem 0;
-        }
-        
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--primary) !important;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .navbar-brand img {
-            height: 45px;
-            width: auto;
-        }
-        
-        .payment-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 0 20px;
-        }
-        
-        .payment-card {
-            background: rgba(26, 26, 46, 0.9);
-            border: 1px solid rgba(255, 70, 85, 0.3);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-        
-        .tournament-info {
-            background: rgba(255, 70, 85, 0.1);
-            border-left: 4px solid var(--primary);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .form-label {
-            color: var(--accent-gaming);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .form-control, .form-select {
-            background: rgba(15, 15, 35, 0.8);
-            border: 1px solid rgba(0, 245, 255, 0.3);
-            color: var(--text-light);
-            padding: 12px;
-            border-radius: 8px;
-        }
-        
-        .form-control:focus, .form-select:focus {
-            background: rgba(15, 15, 35, 0.9);
-            border-color: var(--accent-gaming);
-            color: var(--text-light);
-            box-shadow: 0 0 0 0.25rem rgba(0, 245, 255, 0.25);
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, #ff6b7a 100%);
-            border: none;
-            padding: 12px 40px;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 70, 85, 0.4);
-        }
-        
-        .payment-instructions {
-            background: rgba(0, 245, 255, 0.1);
-            border: 1px solid rgba(0, 245, 255, 0.3);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .payment-instructions h5 {
-            color: var(--accent-gaming);
-            margin-bottom: 15px;
-        }
-        
-        .payment-instructions ol {
-            margin: 0;
-            padding-left: 20px;
-        }
-        
-        .payment-instructions li {
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-        
-        .alert {
-            border-radius: 10px;
-            border: none;
-        }
-        
-        .alert-success {
-            background: rgba(40, 167, 69, 0.2);
-            border-left: 4px solid #28a745;
-            color: #4cff4c;
-        }
-        
-        .alert-danger {
-            background: rgba(220, 53, 69, 0.2);
-            border-left: 4px solid #dc3545;
-            color: #ff6b6b;
-        }
-        
-        .status-badge {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        
-        .status-pending {
-            background: rgba(255, 193, 7, 0.2);
-            color: #ffc107;
-            border: 1px solid #ffc107;
-        }
-        
-        .status-completed {
-            background: rgba(40, 167, 69, 0.2);
-            color: #28a745;
-            border: 1px solid #28a745;
-        }
-        
-        .file-upload-label {
-            cursor: pointer;
-            background: rgba(0, 245, 255, 0.1);
-            border: 2px dashed rgba(0, 245, 255, 0.3);
-            padding: 30px;
-            text-align: center;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .file-upload-label:hover {
-            border-color: var(--accent-gaming);
-            background: rgba(0, 245, 255, 0.15);
-        }
-        
-        .file-upload-label i {
-            font-size: 3rem;
-            color: var(--accent-gaming);
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="player_dashboard.php">
-                <img src="/assets/images/logo.png" alt="Logo">
+                <img src="../../assets/images/SKYNOXX.png" alt="Logo">
                 Free Fire Tournament Platform
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

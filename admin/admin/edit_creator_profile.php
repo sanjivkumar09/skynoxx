@@ -82,83 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Creator Profile - SKYNOXX Admin</title>
-    <link rel="stylesheet" href="../../assets/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #ff4655;
-            --primary-dark: #e03e4c;
-            --secondary: #0f1923;
-            --text: #ece8e1;
-            --text-muted: #b8b3ad;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #0f1923 0%, #1a2b3c 100%);
-            color: var(--text);
-            min-height: 100vh;
-            padding: 2rem 0;
-        }
-        
-        .edit-card {
-            background: rgba(26, 43, 60, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-        }
-        
-        .form-label {
-            color: var(--text);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .form-control {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text);
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-        }
-        
-        .form-control:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary);
-            color: var(--text);
-            box-shadow: 0 0 0 0.2rem rgba(255, 70, 85, 0.25);
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border: none;
-            padding: 0.75rem 2rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text);
-            padding: 0.75rem 2rem;
-            font-weight: 700;
-        }
-        
-        .page-title {
-            color: var(--text);
-            font-weight: 800;
-            margin-bottom: 2rem;
-        }
-        
-        .alert {
-            border-radius: 8px;
-            border: none;
-        }
-    </style>
 </head>
 <body>
     <div class="container">

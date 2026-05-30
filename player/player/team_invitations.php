@@ -48,126 +48,58 @@ $invitations_stmt->close();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Invitations - Free Fire Tournament Platform</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/css/styles.css">
-    <style>
-        :root {
-            --primary: #ff4655;
-            --primary-dark: #e03e4c;
-            --bg-dark: #0f1923;
-            --bg-card: #1a2332;
-        }
-        
-        body {
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2332 100%);
-            min-height: 100vh;
-            color: #fff;
-        }
-        
-        .invitation-card {
-            background: var(--bg-card);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 2px solid rgba(255, 70, 85, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .invitation-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 70, 85, 0.3);
-        }
-        
-        .invitation-card.pending {
-            border-color: rgba(255, 193, 7, 0.5);
-        }
-        
-        .invitation-card.accepted {
-            border-color: rgba(40, 167, 69, 0.5);
-            opacity: 0.7;
-        }
-        
-        .invitation-card.rejected {
-            border-color: rgba(220, 53, 69, 0.5);
-            opacity: 0.7;
-        }
-        
-        .status-badge {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        
-        .status-pending {
-            background: rgba(255, 193, 7, 0.2);
-            color: #ffc107;
-        }
-        
-        .status-accepted {
-            background: rgba(40, 167, 69, 0.2);
-            color: #28a745;
-        }
-        
-        .status-rejected {
-            background: rgba(220, 53, 69, 0.2);
-            color: #dc3545;
-        }
-        
-        .btn-accept {
-            background: linear-gradient(135deg, #28a745, #20c997);
-            border: none;
-            color: white;
-            font-weight: 600;
-        }
-        
-        .btn-accept:hover {
-            background: linear-gradient(135deg, #218838, #1aa179);
-            color: white;
-        }
-        
-        .btn-reject {
-            background: linear-gradient(135deg, #dc3545, #c82333);
-            border: none;
-            color: white;
-            font-weight: 600;
-        }
-        
-        .btn-reject:hover {
-            background: linear-gradient(135deg, #c82333, #bd2130);
-            color: white;
-        }
-        
-        .tournament-info {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-        }
-        
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-        
-        .info-label {
-            color: #aaa;
-        }
-        
-        .info-value {
-            color: #fff;
-            font-weight: 600;
-        }
-    </style>
 </head>
 <body>
-    <?php include '../src/includes/navbar.php'; ?>
+        <nav class="navbar navbar-expand-lg gaming-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="../../src/index.php">
+                <img src="../../assets/images/logo.svg" alt="SKYNOXX FF Logo" class="brand-logo-img">
+            </a>
+            <div class="d-flex align-items-center">
+                <?php if (!isset($_SESSION['user_id'])): ?>
+                    <a href="../signup.php" class="btn btn-gaming-outline me-2">Sign Up</a>
+                    <a href="../login.php" class="btn btn-gaming">Login</a>
+                <?php else:
+                    $role = $_SESSION['role'] ?? '';
+                    $user_name = $_SESSION['user_name'] ?? '';
+                    $initials = '';
+                    if ($user_name) {
+                        $parts = explode(' ', trim($user_name));
+                        $initials = strtoupper(substr($parts[0],0,1) . (isset($parts[1]) ? substr($parts[1],0,1) : ''));
+                    }
+                ?>
+                    <div class="position-relative">
+                        <button id="profileBtn" class="profile-btn" type="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="profile-avatar" role="img" aria-label="User avatar"><?php echo htmlspecialchars($initials ?: 'U'); ?></span>
+                        </button>
+                        <a href="wallet_dashboard.php" class="btn btn-wallet ms-2" style="background:#00f5ff;color:#101a24;font-weight:600;border-radius:8px;">Wallet</a>
+                        <div id="profileMenu" class="profile-menu">
+                            <div class="profile-header">
+                                <div class="d-flex align-items-center gap-2 px-2">
+                                    <div class="profile-avatar" style="width:48px;height:48px;font-size:16px;"><?php echo htmlspecialchars($initials ?: 'U'); ?></div>
+                                    <div>
+                                        <div class="fw-bold"><?php echo htmlspecialchars($user_name ?: 'User'); ?></div>
+                                        <div class="text-muted small"><?php echo htmlspecialchars($role); ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group list-group-flush mt-2">
+                                <a href="../player/profile_details.php" class="list-group-item list-group-item-action">View all details</a>
+                                <a href="../../src/logout.php" class="list-group-item list-group-item-action text-danger">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </nav>
+    <script src="../../assets/js/header.js"></script>
     
     <div class="container mt-5 pt-5">
         <div class="row">

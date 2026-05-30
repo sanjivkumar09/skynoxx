@@ -253,7 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tournament_id'])) {
         <?php endif; ?>
     </div>
 
-    <?php include '../src/includes/footer.php'; ?>
+    <?php include '../../src/includes/footer.php'; ?>
         <?php if (!empty($success)): ?>
         <!-- Success Modal -->
         <div class="modal fade" id="joinSuccessModal" tabindex="-1" aria-hidden="true">

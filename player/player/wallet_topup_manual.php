@@ -41,25 +41,13 @@ $qrUrl = '../../assets/images/WhatsApp%20Image%202025-11-02%20at%2023.40.12_0ed4
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manual Wallet Top-up</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <style>
-        body { background: #0f172a; color: #e2e8f0; }
-        .container-narrow { max-width: 900px; margin: 24px auto; }
-        .card-glass { background: rgba(255,255,255,0.04); border: 1px solid rgba(255, 255, 255, 0.95); border-radius: 16px; box-shadow: 0 10px 30px rgba(222, 21, 21, 0.94); }
-        .wallet-header { font-weight: 800; letter-spacing: .3px; }
-        .qr-wrap { background: rgba(255,255,255,0.06); border: 1px solid rgba(255, 255, 255, 0.89); border-radius: 12px; padding: 16px; text-align: center; }
-        .qr-wrap img { max-width: 100%; height: auto; border-radius: 10px; }
-        .badge-balance { background: linear-gradient(90deg, #22c55e, #16a34a); }
-        .btn-primary { background: linear-gradient(90deg, #3b82f6, #2563eb); border: 0; }
-        .btn-primary:hover { filter: brightness(1.1); }
-    .form-control, .form-control:focus { background: #0b1220; color: #e2e8f0; border-color: #334155; }
-    /* Use pure white for any previously-muted helper text on this page */
-    .small-muted { color: #ffffff !important; }
-    </style>
  </head>
  <body>
  <div class="container container-narrow">

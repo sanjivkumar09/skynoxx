@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../src/db.php';
-require_once '../src/NotificationManager.php';
+require_once '../../player/src/NotificationManager.php';
 
 // Check if user is logged in and is an admin
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
@@ -132,133 +132,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['withdrawal_id'], $_PO
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Withdrawals</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f4f6f9;
-            font-family: 'Inter', sans-serif;
-            color: #374151;
-        }
-        .container {
-            max-width: 1200px;
-            padding: 1rem;
-        }
-        .table {
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        .table thead {
-            background-color: #4a90e2;
-            color: #fff;
-        }
-        .table th, .table td {
-            vertical-align: middle;
-            padding: 12px;
-        }
-        .table-hover tbody tr:hover {
-            background-color: #f1f5f9;
-        }
-        .qr-preview {
-            max-width: 100px;
-            max-height: 100px;
-            transition: transform 0.2s;
-        }
-        .qr-preview:hover {
-            transform: scale(1.1);
-        }
-        .modal-qr {
-            max-width: 100%;
-            max-height: 400px;
-        }
-        .detail-label {
-            font-weight: 600;
-            color: #374151;
-        }
-        .btn-sm {
-            padding: 6px 12px;
-            font-size: 0.875rem;
-        }
-        .btn-action-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .btn-action-group .btn {
-            width: 100%;
-            transition: background-color 0.2s;
-        }
-        .badge {
-            font-size: 0.75rem;
-            padding: 6px 10px;
-        }
-        .alert {
-            border-radius: 8px;
-        }
-        .modal-content {
-            border-radius: 12px;
-            border: none;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-        .modal-header {
-            border-bottom: none;
-        }
-        .modal-footer {
-            border-top: none;
-        }
-        @media (max-width: 768px) {
-            .table-responsive {
-                overflow-x: auto;
-            }
-            .table th, .table td {
-                font-size: 0.85rem;
-                padding: 8px;
-            }
-            .btn-action-group {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 6px;
-            }
-            .btn-action-group .btn {
-                flex: 1;
-                min-width: 100px;
-            }
-            .qr-preview {
-                max-width: 80px;
-                max-height: 80px;
-            }
-            .modal-qr {
-                max-height: 300px;
-            }
-            .modal-dialog {
-                margin: 1rem;
-            }
-        }
-        @media (max-width: 576px) {
-            .table th, .table td {
-                font-size: 0.75rem;
-            }
-            .btn-sm {
-                font-size: 0.75rem;
-                padding: 4px 8px;
-            }
-            .badge {
-                font-size: 0.65rem;
-            }
-            .modal-body {
-                padding: 1rem;
-            }
-            h2 {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
 </head>
 <body>
 <div class="container py-4">

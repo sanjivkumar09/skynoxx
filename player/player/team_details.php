@@ -29,9 +29,9 @@ $stmt = $conn->prepare("
         COALESCE(tr.role, 'captain') as user_role
     FROM tournaments t
     JOIN registrations r ON t.id = r.tournament_id
-    LEFT JOIN team_registrations tr ON tr.registration_id = r.id AND tr.user_id = ? AND tr.status = 'accepted'
+    LEFT JOIN team_registrations tr ON tr.registration_id = r.id AND tr.user_id = ? AND tr.invitation_status = 'accepted'
     JOIN users u ON r.player_id = u.id
-    WHERE t.id = ? AND (r.player_id = ? OR (tr.user_id = ? AND tr.status = 'accepted'))
+    WHERE t.id = ? AND (r.player_id = ? OR (tr.user_id = ? AND tr.invitation_status = 'accepted'))
     LIMIT 1
 ");
 $stmt->bind_param('iiii', $user_id, $tournament_id, $user_id, $user_id);
@@ -59,10 +59,14 @@ if (!$team_data) {
     <!DOCTYPE html>
     <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <title>Tournament Details</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
+</head>
     <body>
     <div class="container mt-5">
         <h2><?php echo htmlspecialchars($tournament_data['title']); ?></h2>
@@ -91,7 +95,7 @@ $members_stmt = $conn->prepare("
     FROM team_registrations tr
     JOIN users u ON tr.user_id = u.id
     LEFT JOIN players_profile pp ON u.id = pp.user_id
-    WHERE tr.registration_id = ? AND tr.status = 'accepted'
+    WHERE tr.registration_id = ? AND tr.invitation_status = 'accepted'
     ORDER BY tr.position_index ASC
 ");
 $members_stmt->bind_param('i', $team_data['registration_id']);
@@ -127,205 +131,11 @@ if (empty($team_members)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Details - <?php echo htmlspecialchars($team_data['title']); ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Team Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../../assets/css/styles.css">
-    <style>
-        :root {
-            --primary: #ff4655;
-            --primary-dark: #e03e4c;
-            --bg-dark: #0f1923;
-            --bg-card: #1a2332;
-        }
-        
-        body {
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2332 100%);
-            min-height: 100vh;
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .team-container {
-            max-width: 900px;
-            margin: 80px auto 40px;
-            padding: 20px;
-        }
-        
-        .team-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 2px solid rgba(255, 70, 85, 0.3);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-        
-        .team-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid rgba(255, 70, 85, 0.2);
-        }
-        
-        .team-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .team-name {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #ffd700;
-            margin-bottom: 1rem;
-        }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .info-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1rem;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 70, 85, 0.2);
-        }
-        
-        .info-label {
-            font-size: 0.85rem;
-            color: #aaa;
-            margin-bottom: 0.3rem;
-        }
-        
-        .info-value {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #fff;
-        }
-        
-        .members-section {
-            margin-top: 2rem;
-        }
-        
-        .section-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .member-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 1.2rem;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        
-        .member-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary);
-        }
-        
-        .member-info {
-            flex: 1;
-        }
-        
-        .member-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 0.3rem;
-        }
-        
-        .member-details {
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-        
-        .member-badge {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        
-        .captain-badge {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            color: #000;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .btn-leave {
-            flex: 1;
-            background: linear-gradient(135deg, #dc3545, #c82333);
-            border: none;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-leave:hover {
-            background: linear-gradient(135deg, #c82333, #bd2130);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(220, 53, 69, 0.4);
-        }
-        
-        .btn-back {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-back:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: var(--primary);
-            color: white;
-        }
-        
-        .warning-box {
-            background: rgba(255, 193, 7, 0.1);
-            border: 2px solid rgba(255, 193, 7, 0.5);
-            border-radius: 12px;
-            padding: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .warning-box i {
-            color: #ffc107;
-            margin-right: 0.5rem;
-        }
-    </style>
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top" style="background: rgba(15, 25, 35, 0.95); border-bottom: 2px solid rgba(255, 70, 85, 0.3);">

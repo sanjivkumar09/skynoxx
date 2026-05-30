@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-$tournament_id = $_GET['id'] ?? null;
+$tournament_id = $_GET['tournament_id'] ?? $_GET['id'] ?? null;
 
 if (!$tournament_id) {
     header("Location: tournaments.php");

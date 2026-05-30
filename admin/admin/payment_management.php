@@ -80,90 +80,13 @@ foreach ($registrations as $reg) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Management - Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #ff4655;
-            --primary-dark: #e03e4c;
-            --accent-gaming: #00f5ff;
-            --dark-bg: #0f0f23;
-            --card-bg: #1a1a2e;
-            --card-border: #16213e;
-            --text-primary: #e0e0e0;
-            --text-secondary: #9fb6c3;
-        }
-        body {
-            background: var(--dark-bg);
-            color: var(--text-primary);
-            font-family: 'Orbitron', sans-serif;
-        }
-        .card-modern {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 20px rgba(102,126,234,0.1);
-            margin-bottom: 2rem;
-        }
-        .stat-card {
-            text-align: center;
-            padding: 1.5rem;
-        }
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent-gaming);
-        }
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-        }
-        .table {
-            background: var(--card-bg);
-            color: var(--text-primary);
-        }
-        .table thead th {
-            background: rgba(102,126,234,0.2);
-            border-color: var(--card-border);
-            color: var(--accent-gaming);
-        }
-        .table tbody td {
-            border-color: var(--card-border);
-            vertical-align: middle;
-        }
-        .badge-pending { background: #ffc107; }
-        .badge-completed { background: #28a745; }
-        .badge-failed { background: #dc3545; }
-        .neon-text { text-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff; }
-        .btn-gaming {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border: none;
-            color: #fff;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-        }
-        .modal-content {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-primary);
-        }
-        .form-control, .form-select {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-primary);
-        }
-        .form-control:focus, .form-select:focus {
-            background: rgba(255,255,255,0.08);
-            border-color: var(--accent-gaming);
-            color: var(--text-primary);
-        }
-    </style>
 </head>
 <body>
 <div class="container mt-4">

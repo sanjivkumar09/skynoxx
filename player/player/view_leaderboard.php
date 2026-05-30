@@ -63,7 +63,7 @@ if ($match_filter > 0) {
             mr.total_points
         FROM registrations r
         JOIN users u ON r.player_id = u.id
-        LEFT JOIN team_registrations tr ON r.id = tr.registration_id AND tr.status = 'accepted'
+        LEFT JOIN team_registrations tr ON r.id = tr.registration_id AND tr.invitation_status = 'accepted'
         LEFT JOIN users tr_members ON tr.user_id = tr_members.id
         LEFT JOIN match_results mr ON r.id = mr.registration_id AND mr.match_number = ?
         WHERE r.tournament_id = ? AND (r.payment_status IN ('success', 'paid') OR r.payment_status = '' OR r.payment_status IS NULL)
@@ -94,7 +94,7 @@ if ($match_filter > 0) {
             SUM(mr.total_points) as cumulative_points
         FROM registrations r
         JOIN users u ON r.player_id = u.id
-        LEFT JOIN team_registrations tr ON r.id = tr.registration_id AND tr.status = 'accepted'
+        LEFT JOIN team_registrations tr ON r.id = tr.registration_id AND tr.invitation_status = 'accepted'
         LEFT JOIN users tr_members ON tr.user_id = tr_members.id
         LEFT JOIN match_results mr ON r.id = mr.registration_id
         WHERE r.tournament_id = ? AND (r.payment_status IN ('success', 'paid') OR r.payment_status = '' OR r.payment_status IS NULL)
@@ -115,50 +115,13 @@ function h($v) { return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8'); }
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard - <?php echo h($tournament['title']); ?></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <style>
-        body { background: #0f172a; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-        .container-main { max-width: 1200px; margin: 24px auto; }
-        .card-glass { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.5rem; }
-        .leaderboard-table { background: rgba(255,255,255,0.02); border: 2px solid rgba(255, 215, 0, 0.2); }
-        .leaderboard-table th { 
-            background: rgba(255, 215, 0, 0.15); 
-            color: #ffd700; 
-            font-weight: 700; 
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            border-bottom: 2px solid rgba(255, 215, 0, 0.3); 
-            padding: 1rem 0.75rem;
-        }
-        .leaderboard-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .leaderboard-table tbody tr:hover { background: rgba(110, 180, 255, 0.05); }
-        .leaderboard-table td { padding: 1rem 0.75rem; vertical-align: middle; }
-        .rank-1 { background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05)) !important; }
-        .rank-2 { background: linear-gradient(135deg, rgba(192, 192, 192, 0.2), rgba(192, 192, 192, 0.05)) !important; }
-        .rank-3 { background: linear-gradient(135deg, rgba(205, 127, 50, 0.2), rgba(205, 127, 50, 0.05)) !important; }
-        .rank-badge { 
-            display: inline-flex; 
-            align-items: center; 
-            justify-content: center; 
-            width: 40px; 
-            height: 40px; 
-            border-radius: 50%; 
-            font-weight: 800; 
-            font-size: 1.2rem; 
-        }
-        .rank-badge.gold { background: linear-gradient(135deg, #ffd700, #ffed4e); color: #000; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5); }
-        .rank-badge.silver { background: linear-gradient(135deg, #c0c0c0, #e8e8e8); color: #000; box-shadow: 0 4px 15px rgba(192, 192, 192, 0.5); }
-        .rank-badge.bronze { background: linear-gradient(135deg, #cd7f32, #e6a55b); color: #000; box-shadow: 0 4px 15px rgba(205, 127, 50, 0.5); }
-        .stat-badge { padding: 6px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; }
-        .team-members { font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem; }
-        .match-selector { background: linear-gradient(135deg, #8b5cf6, #6366f1); padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem; }
-        .btn-primary { background: linear-gradient(135deg, #3b82f6, #2563eb); border: 0; font-weight: 600; }
-        .highlight-player { background: rgba(59, 130, 246, 0.15) !important; border-left: 4px solid #3b82f6 !important; }
-    </style>
 </head>
 <body>
 <div class="container container-main py-4">

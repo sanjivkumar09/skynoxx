@@ -42,58 +42,13 @@ $prefs = $notificationManager->getUserPreferences($user_id);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/gaming-theme.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notification Settings</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #ff4655;
-            --secondary: #0f1923;
-            --text: #ece8e1;
-        }
-        body {
-            background: linear-gradient(135deg, #0f1923 0%, #1a2836 100%);
-            color: var(--text);
-            min-height: 100vh;
-        }
-        .settings-card {
-            background: rgba(31, 45, 61, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-        .setting-item {
-            padding: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .setting-item:last-child {
-            border-bottom: none;
-        }
-        .form-switch .form-check-input {
-            width: 3em;
-            height: 1.5em;
-        }
-        .form-switch .form-check-input:checked {
-            background-color: var(--primary);
-            border-color: var(--primary);
-        }
-        .setting-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 70, 85, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-        }
-    </style>
 </head>
 <body>
     <div class="container">
